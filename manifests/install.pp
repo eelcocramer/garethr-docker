@@ -57,9 +57,6 @@ class docker::install {
       }
     }
     'Archlinux': {
-      package { 'docker':
-        ensure => installed,
-      }
     }
   }
 
