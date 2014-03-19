@@ -59,7 +59,7 @@ class docker::service (
         provider  => systemd,
       }
 
-      file { '/etc/systemd/system/multi-user.target.wants/docker.service':
+      file { '/usr/lib/systemd/system/docker.service':
         ensure  => present,
         force   => true,
         content => template('docker/etc/systemd/docker.service.erb'),
