@@ -56,7 +56,7 @@ class docker::service (
         ensure    => $service_state,
         enable    => true,
         hasstatus => true,
-        provider  => systemctl,
+        provider  => systemd,
       }
 
       file { '/etc/systemd/system/multi-user.target.wants/docker.service':

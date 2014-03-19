@@ -56,6 +56,11 @@ class docker::install {
         Class['epel'] -> Package[$dockerbasepkg]
       }
     }
+    'Archlinux': {
+      package { 'docker'
+        ensure => installed,
+      }
+    }
   }
 
   if $manage_kernel {
