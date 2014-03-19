@@ -36,7 +36,7 @@ describe 'docker', :type => :class do
     it do
       expect {
         should contain_package('docker')
-      }.to raise_error(Puppet::Error, /^This module only works on Debian and Red Hat based systems/)
+      }.to raise_error(Puppet::Error, /^This module only works on Debian, Red Hat and Archlinux based systems/)
     end
   end
 

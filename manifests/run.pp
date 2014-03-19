@@ -71,7 +71,7 @@ define docker::run(
       }
     }
     default: {
-      fail('Docker needs a RedHat or Debian based system.')
+      fail('Docker needs a RedHat, Debian or Archlinux based system.')
     }
   }
 

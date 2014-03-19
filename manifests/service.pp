@@ -51,8 +51,23 @@ class docker::service (
         notify  => Service['docker'],
       }
     }
+    'Archlinux': {
+      service { 'docker':
+        ensure    => $service_state,
+        enable    => true,
+        hasstatus => true,
+        provider  => systemctl,
+      }
+
+      file { '/etc/systemd/system/multi-user.target.wants/docker.service':
+        ensure  => present,
+        force   => true,
+        content => template('docker/etc/systemd/docker.service.erb'),
+        notify  => Service['docker'],
+      }
+    }
     default: {
-      fail('Docker needs a RedHat or Debian based system.')
+      fail('Docker needs a RedHat, Debian or Archlinux based system.')
     }
   }
 }
