@@ -78,8 +78,8 @@ define docker::run(
         force   => true,
         content => template('docker/etc/systemd/docker-run.service.erb'),
       }
-      
-      service { 'docker-${title}':
+
+      service { "docker-${title}":
         ensure    => $running,
         enable    => true,
         hasstatus => true,
