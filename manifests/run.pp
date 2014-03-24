@@ -71,15 +71,14 @@ define docker::run(
       }
     }
     'Archlinux': {
-      $initscript = "/usr/lib/systemd/system/docker.service"
+      $initscript = "/usr/lib/systemd/system/docker-${title}.service"
 
       file { $initscript:
         ensure  => present,
         force   => true,
-        content => template('docker/etc/systemd/docker.service.erb'),
-        notify  => Service['docker'],
+        content => template('docker/etc/systemd/docker-run.service.erb'),
       }
-
+      
       service { 'docker-${title}':
         ensure    => $running,
         enable    => true,
