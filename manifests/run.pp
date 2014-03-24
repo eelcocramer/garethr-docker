@@ -70,6 +70,23 @@ define docker::run(
         enable     => true,
       }
     }
+    'Archlinux': {
+      $initscript = "/usr/lib/systemd/system/docker.service"
+
+      file { $initscript:
+        ensure  => present,
+        force   => true,
+        content => template('docker/etc/systemd/docker.service.erb'),
+        notify  => Service['docker'],
+      }
+
+      service { 'docker-${title}':
+        ensure    => $running,
+        enable    => true,
+        hasstatus => true,
+        provider  => systemd,
+      }
+    }
     default: {
       fail('Docker needs a RedHat, Debian or Archlinux based system.')
     }
